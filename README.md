@@ -7,18 +7,15 @@ Deployments:
 * Prod: <https://team03.dokku-07.cs.ucsb.edu>
 * QA: <https://team03-qa.dokku-07.cs.ucsb.edu>
 
-TODO: Fill in this table with correct information.  Don't delete rows that
-aren't being completed (due to having only 4 or 5 team members); instead
-put `(no one)` under name and leave Github Id blank.
 
-| Table                     | Name         | Github Id |
-|---------------------------|--------------|-----------|
-| UCSBDiningCommonsMenuItem |              |           |
-| UCSBOrganization          |              |           |
-| RecommendationRequest     |              |           |
-| MenuItemReview            |              |           |
-| HelpRequest               |              |           |
-| Articles                  |              |           |
+| Table                     | Name         | Github Id  |
+|---------------------------|--------------|------------|
+| UCSBDiningCommonsMenuItem |(Whole Team)  |(none)      |
+| UCSBOrganization          |Yuanchen Meng |yuanchenmeng|
+| RecommendationRequest     |David Sim     |dscpsyl     |
+| MenuItemReview            |Qi SU         |publicqi    |
+| HelpRequest               |Ian Weissburg |iain801     |
+| Articles                  |Matt Priston  |MPriston    |
 
 Remember though, that in spite of these initial  assignments, it is still
 a team project.  Please help other team members to finish their work
