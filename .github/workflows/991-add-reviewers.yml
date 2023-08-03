@@ -1,0 +1,38 @@
+name: Add reviewers when PR is opened
+
+on:
+  pull_request:
+    types: [opened]
+
+jobs:
+  add_reviewers:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v2
+
+      - name: Add reviewers
+        uses: actions/github-script@v4
+        with:
+          github-token: ${{secrets.GITHUB_TOKEN}}
+          script: |
+            let reviewers = process.env.REVIEWERS
+            if (!reviewers) {
+              console.log('No reviewers specified. Please follow the instructions in the README.')
+              return
+            }
+            reviewers = reviewers.split(',')
+            // exclude the author of the PR from the reviewers list
+            let author = context.payload.pull_request.user.login
+            let index = reviewers.indexOf(author)
+            if (index > -1) {
+              reviewers.splice(index, 1)
+            }
+            github.pulls.requestReviewers({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              pull_number: context.issue.number,
+              reviewers: reviewers
+            })
+        env:
+          REVIEWERS: ${{ vars.REVIEWERS }}
