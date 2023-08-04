@@ -50,6 +50,13 @@ export default function AppNavbar({ currentUser, systemInfo, doLogout, currentUr
                   </NavDropdown>
                 )
               }
+              {
+              hasRole(currentUser, "ROLE_USER") && (
+              <>
+              <Nav.Link as={NavLink} to="/restaurants">Restaurants</Nav.Link>
+              </>
+                )
+              }
             </Nav>
             {
               currentUser && currentUser.loggedIn && (
