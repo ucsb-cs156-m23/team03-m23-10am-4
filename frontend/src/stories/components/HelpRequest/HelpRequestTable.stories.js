@@ -1,6 +1,6 @@
 import React from 'react';
 import HelpRequestTable from "main/components/HelpRequest/HelpRequestTable";
-import { ucsbDatesFixtures } from 'fixtures/ucsbDatesFixtures';
+import { helpRequestFixtures } from 'fixtures/helpRequestFixtures';
 import { currentUserFixtures } from 'fixtures/currentUserFixtures';
 import { rest } from "msw";
 
@@ -42,4 +42,3 @@ ThreeItemsAdminUser.parameters = {
         }),
     ]
 };
-
