@@ -41,6 +41,9 @@ function HelpRequestForm({ initialContents, submitAction, buttonLabel = "Create"
                                 value={initialContents.id}
                                 disabled
                             />
+                            <Form.Control.Feedback type="invalid">
+                                {errors.id?.message}
+                            </Form.Control.Feedback>
                         </Form.Group>
                     </Col>
                 )}
@@ -60,6 +63,9 @@ function HelpRequestForm({ initialContents, submitAction, buttonLabel = "Create"
                         </Form.Control.Feedback>
                     </Form.Group>
                 </Col>
+            </Row>
+
+            <Row>
                 <Col>
                     <Form.Group className="mb-3" >
                         <Form.Label htmlFor="requestDateTime">Date (iso format)</Form.Label>
@@ -71,7 +77,7 @@ function HelpRequestForm({ initialContents, submitAction, buttonLabel = "Create"
                             {...register("requestDateTime", { required: true, pattern: isodate_regex })}
                         />
                         <Form.Control.Feedback type="invalid">
-                            {errors.requestDateTime && 'RequestDateTime is required. '}
+                            {errors.requestDateTime && 'RequestDateTime is required.'}
                         </Form.Control.Feedback>
                     </Form.Group>
                 </Col>
@@ -103,8 +109,7 @@ function HelpRequestForm({ initialContents, submitAction, buttonLabel = "Create"
                             id="requestBody"
                             type="text"
                             isInvalid={Boolean(errors.requestBody)}
-                            {...register("requestBody", {
-                            })}
+                            {...register("requestBody")}
                         />
                         <Form.Control.Feedback type="invalid">
                             {errors.requestBody?.message}
