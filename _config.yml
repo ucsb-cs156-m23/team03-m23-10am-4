@@ -23,4 +23,4 @@ repo_name: "TBD"
 repo: ucsb-cs156-m23/team03-m23-10am-4
 owner: ucsb-cs156-m23
 repo_name: team03-m23-10am-4
-pull_requests: [{"author":{"id":"MDQ6VXNlcjE4Njg1MDcy","is_bot":false,"login":"iain801","name":"Iain Weissburg"},"headRefName":"Iain-HelpRequestForm","number":63,"title":"HelpRequest Form Component and Tests","url":"https://github.com/ucsb-cs156-m23/team03-m23-10am-4/pull/63"},{"author":{"id":"MDQ6VXNlcjQxMTY1MjA0","is_bot":false,"login":"dscpsyl","name":"SimYouLater"},"headRefName":"Dav-DCMenuItemCopy","number":62,"title":"UCSBDiningCommMenuItem Backend Copy from team02","url":"https://github.com/ucsb-cs156-m23/team03-m23-10am-4/pull/62"}]
+pull_requests: [{"author":{"id":"MDQ6VXNlcjE4Njg1MDcy","is_bot":false,"login":"iain801","name":"Iain Weissburg"},"headRefName":"Iain-HelpRequestForm","number":63,"title":"HelpRequest Form Component and Tests","url":"https://github.com/ucsb-cs156-m23/team03-m23-10am-4/pull/63"}]
