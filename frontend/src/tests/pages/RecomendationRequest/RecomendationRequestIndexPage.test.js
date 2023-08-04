@@ -1,5 +1,5 @@
 import { render, screen } from "@testing-library/react";
-import PlaceholderIndexPage from "main/pages/RecomendationRequest/RecomendationRequestIndexPage";
+import RecomendationRequestIndexPage from "main/pages/RecomendationRequest/RecomendationRequestIndexPage";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { MemoryRouter } from "react-router-dom";
 
@@ -30,7 +30,7 @@ describe("RecomendationRequestIndexPage tests", () => {
         render(
             <QueryClientProvider client={queryClient}>
                 <MemoryRouter>
-                    <PlaceholderIndexPage />
+                    <RecomendationRequestIndexPage />
                 </MemoryRouter>
             </QueryClientProvider>
         );

@@ -1,5 +1,5 @@
 import { render, screen } from "@testing-library/react";
-import PlaceholderEditPage from "main/pages/RecomendationRequest/RecomendationRequestEditPage";
+import RecomendationRequestEditPage from "main/pages/RecomendationRequest/RecomendationRequestEditPage";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { MemoryRouter } from "react-router-dom";
 
@@ -30,7 +30,7 @@ describe("RecomendationRequestEditPage tests", () => {
         render(
             <QueryClientProvider client={queryClient}>
                 <MemoryRouter>
-                    <PlaceholderEditPage />
+                    <RecomendationRequestEditPage />
                 </MemoryRouter>
             </QueryClientProvider>
         );
