@@ -66,7 +66,7 @@ describe("HelpRequestIndexPage tests", () => {
         expect(button).toHaveAttribute("style", "float: right;");
     });
 
-    test("renders three dates correctly for regular user", async () => {
+    test("renders three requests correctly for regular user", async () => {
         
         // arrange
         setupUserOnly();

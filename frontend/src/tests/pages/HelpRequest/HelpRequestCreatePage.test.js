@@ -96,7 +96,7 @@ describe("HelpRequestCreatePage tests", () => {
             {
                 "title": "Please help us",
                 "requester": "10am Team 4",
-                "localDateTime": "2022-02-02T00:00",
+                "requestDateTime": "2022-02-02T00:00",
                 "requestBody": "We need help with testing"
         });
 

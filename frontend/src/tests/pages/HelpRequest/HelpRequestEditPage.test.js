@@ -78,14 +78,14 @@ describe("HelpRequestEditPage tests", () => {
                 id: 17,
                 title: "Please help us",
                 requester: "10am Team 4",
-                localDateTime: "2022-02-02T00:00",
+                requestDateTime: "2022-02-02T00:00",
                 requestBody: "We need help with testing"
             });
             axiosMock.onPut('/api/helprequest').reply(200, {
                 id: "17",
                 title: "Please help us instead",
                 requester: "10am Team 2",
-                localDateTime: "2022-02-03T05:00",
+                requestDateTime: "2022-02-03T05:00",
                 requestBody: "We need help with merging"
             });
         });
@@ -138,7 +138,7 @@ describe("HelpRequestEditPage tests", () => {
                 </QueryClientProvider>
             );
 
-            await screen.findByTestId("HelpRequestForm-quarterYYYYQ");
+            await screen.findByTestId("HelpRequestForm-title");
 
             const idField = screen.getByTestId("HelpRequestForm-id");
             const titleField = screen.getByTestId("HelpRequestForm-title");
@@ -170,7 +170,7 @@ describe("HelpRequestEditPage tests", () => {
             expect(axiosMock.history.put[0].data).toBe(JSON.stringify({
                 title: "Please help us instead",
                 requester: "10am Team 2",
-                localDateTime: "2022-02-03T05:00",
+                requestDateTime: "2022-02-03T05:00",
                 requestBody: "We need help with merging"
             })); // posted object
 
