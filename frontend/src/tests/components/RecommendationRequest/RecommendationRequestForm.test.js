@@ -29,6 +29,12 @@ describe("RecommendationRequestForm tests", () => {
         );
 
         expect(await screen.findByText(/Create/)).toBeInTheDocument();
+        expect(await screen.findByTestId(`${testId}-professorEmail`)).toBeInTheDocument();
+        expect(await screen.findByTestId(`${testId}-explanation`)).toBeInTheDocument();
+        expect(await screen.findByTestId(`${testId}-dateRequested`)).toBeInTheDocument();
+        expect(await screen.findByTestId(`${testId}-dateNeeded`)).toBeInTheDocument();
+        expect(await screen.findByTestId(`${testId}-done`)).toBeInTheDocument();
+        expect(await screen.findByTestId(`${testId}-submit`)).toBeInTheDocument();
 
         expectedHeaders.forEach((headerText) => {
             const header = screen.getByText(headerText);
@@ -93,14 +99,24 @@ describe("RecommendationRequestForm tests", () => {
         expect(screen.getByText(/Date Requested is required/)).toBeInTheDocument();
         expect(screen.getByText(/Date Needed is required/)).toBeInTheDocument();
 
-
-        const nameInput = screen.getByTestId(`${testId}-requesterEmail`);
-        fireEvent.change(nameInput, { target: { value: "a".repeat(101) } });
+        fireEvent.change(screen.getByTestId(`${testId}-requesterEmail`), { target: { value: "a".repeat(101) } });
         fireEvent.click(submitButton);
-
         await waitFor(() => {
             expect(screen.getByText(/Max length 100 characters/)).toBeInTheDocument();
         });
+
+        fireEvent.change(screen.getByTestId(`${testId}-professorEmail`), { target: { value: "a".repeat(201) } });
+        fireEvent.click(submitButton);
+        await waitFor(() => {
+            expect(screen.getByText(/Max length 200 characters/)).toBeInTheDocument();
+        });
+
+        fireEvent.change(screen.getByTestId(`${testId}-explanation`), { target: { value: "a".repeat(1001) } });
+        fireEvent.click(submitButton);
+        await waitFor(() => {
+            expect(screen.getByText(/Max length 1000 characters/)).toBeInTheDocument();
+        });
+
     });
 
 });

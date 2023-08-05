@@ -75,8 +75,8 @@ function RecommendationRequestForm({ initialContents, submitAction, buttonLabel 
                     {...register("professorEmail", {
                         required: "Professor Email is required.",
                         maxLength : {
-                            value: 100,
-                            message: "Max length 100 characters"
+                            value: 200,
+                            message: "Max length 200 characters"
                         }
                     })}
                 />
