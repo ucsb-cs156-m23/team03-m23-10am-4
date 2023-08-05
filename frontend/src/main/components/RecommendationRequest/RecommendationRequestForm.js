@@ -3,16 +3,6 @@ import { useForm } from 'react-hook-form'
 import { useNavigate } from 'react-router-dom';
 
 function RecommendationRequestForm({ initialContents, submitAction, buttonLabel = "Create" }) {
-
-    /*
-    private String requesterEmail;
-    private String professorEmail;
-    private String explanation;
-    private LocalDateTime dateRequested;
-    private LocalDateTime dateNeeded;
-    private boolean done;
-    
-    */
     
     // Stryker disable all
     const {
@@ -46,13 +36,13 @@ function RecommendationRequestForm({ initialContents, submitAction, buttonLabel 
             )}
 
             <Form.Group className="mb-3" >
-                <Form.Label htmlFor="email">Email</Form.Label>
+                <Form.Label htmlFor="requesterEmail">Email</Form.Label>
                 <Form.Control
                     data-testid={testIdPrefix + "-requesterEmail"}
-                    id="email"
+                    id="requesterEmail"
                     type="text"
                     isInvalid={Boolean(errors.name)}
-                    {...register("email", {
+                    {...register("requesterEmail", {
                         required: "Your email is required.",
                         maxLength : {
                             value: 100,
@@ -61,7 +51,7 @@ function RecommendationRequestForm({ initialContents, submitAction, buttonLabel 
                     })}
                 />
                 <Form.Control.Feedback type="invalid">
-                    {errors.email?.message}
+                    {errors.requesterEmail?.message}
                 </Form.Control.Feedback>
             </Form.Group>
 
@@ -138,8 +128,8 @@ function RecommendationRequestForm({ initialContents, submitAction, buttonLabel 
             </Form.Group>         
 
             <Form.Group className="mb-3" >
-                <Form.Label htmlFor="done">Done</Form.Label>
-                <Form.Control
+                <Form.Label htmlFor="done">Resolved?</Form.Label>
+                <Form.Check
                     data-testid={testIdPrefix + "-done"}
                     id="done"
                     type="checkbox"

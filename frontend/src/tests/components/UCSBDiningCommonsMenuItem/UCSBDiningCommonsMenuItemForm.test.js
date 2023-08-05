@@ -1,8 +1,8 @@
 import { fireEvent, render, screen, waitFor } from "@testing-library/react";
 import { BrowserRouter as Router } from "react-router-dom";
 
-import RecommendationRequestForm from "main/components/RecommendationRequest/RecommendationRequestForm";
-import { recommendationRequestFixtures } from "fixtures/recommendationRequestFixtures";
+import UCSBDiningCommonsMenuItemForm from "main/components/UCSBDiningCommonsMenuItem/UCSBDiningCommonsMenuItemForm";
+import { ucsbDiningCommonsMenuItemFixtures } from "fixtures/ucsbDiningCommonsMenuItemFixtures";
 
 import { QueryClient, QueryClientProvider } from "react-query";
 
@@ -13,27 +13,25 @@ jest.mock('react-router-dom', () => ({
     useNavigate: () => mockedNavigate
 }));
 
-describe("RecommendationRequestForm tests", () => {
+describe("UCSBDiningCommonsMenuItemForm tests", () => {
     const queryClient = new QueryClient();
 
-    const expectedHeaders = ["Email", "Professor Email", "Explanation/Request", "Date Requested", "Date Needed", "Resolved?"];
-    const testId = "RecommendationRequestForm";
+    const expectedHeaders = ["Dining Commons Name", "Item Name", "Station Name"];
+    const testId = "UCSBDiningCommonsMenuItemForm";
 
     test("renders correctly with no initialContents", async () => {
         render(
             <QueryClientProvider client={queryClient}>
                 <Router>
-                    <RecommendationRequestForm />
+                    <UCSBDiningCommonsMenuItemForm />
                 </Router>
             </QueryClientProvider>
         );
 
         expect(await screen.findByText(/Create/)).toBeInTheDocument();
-        expect(await screen.findByTestId(`${testId}-professorEmail`)).toBeInTheDocument();
-        expect(await screen.findByTestId(`${testId}-explanation`)).toBeInTheDocument();
-        expect(await screen.findByTestId(`${testId}-dateRequested`)).toBeInTheDocument();
-        expect(await screen.findByTestId(`${testId}-dateNeeded`)).toBeInTheDocument();
-        expect(await screen.findByTestId(`${testId}-done`)).toBeInTheDocument();
+        expect(await screen.findByTestId(`${testId}-diningCommonsCode`)).toBeInTheDocument();
+        expect(await screen.findByTestId(`${testId}-name`)).toBeInTheDocument();
+        expect(await screen.findByTestId(`${testId}-station`)).toBeInTheDocument();
         expect(await screen.findByTestId(`${testId}-submit`)).toBeInTheDocument();
 
         expectedHeaders.forEach((headerText) => {
@@ -47,7 +45,7 @@ describe("RecommendationRequestForm tests", () => {
         render(
             <QueryClientProvider client={queryClient}>
                 <Router>
-                    <RecommendationRequestForm initialContents={recommendationRequestFixtures.oneRequest} />
+                    <UCSBDiningCommonsMenuItemForm initialContents={ucsbDiningCommonsMenuItemFixtures.oneItem} />
                 </Router>
             </QueryClientProvider>
         );
@@ -68,7 +66,7 @@ describe("RecommendationRequestForm tests", () => {
         render(
             <QueryClientProvider client={queryClient}>
                 <Router>
-                    <RecommendationRequestForm />
+                    <UCSBDiningCommonsMenuItemForm />
                 </Router>
             </QueryClientProvider>
         );
@@ -84,7 +82,7 @@ describe("RecommendationRequestForm tests", () => {
         render(
             <QueryClientProvider client={queryClient}>
                 <Router>
-                    <RecommendationRequestForm />
+                    <UCSBDiningCommonsMenuItemForm />
                 </Router>
             </QueryClientProvider>
         );
@@ -93,30 +91,27 @@ describe("RecommendationRequestForm tests", () => {
         const submitButton = screen.getByText(/Create/);
         fireEvent.click(submitButton);
 
-        await screen.findByText(/Your email is required./);
-        expect(screen.getByText(/Professor Email is required/)).toBeInTheDocument();
-        expect(screen.getByText(/Explanation is required/)).toBeInTheDocument();
-        expect(screen.getByText(/Date Requested is required/)).toBeInTheDocument();
-        expect(screen.getByText(/Date Needed is required/)).toBeInTheDocument();
+        await screen.findByText(/Dining Commons Name is required/);
+        expect(screen.getByText(/Item Name is required/)).toBeInTheDocument();
+        expect(screen.getByText(/Station Name is required/)).toBeInTheDocument();
 
-        fireEvent.change(screen.getByTestId(`${testId}-requesterEmail`), { target: { value: "a".repeat(101) } });
+        fireEvent.change(screen.getByTestId(`${testId}-diningCommonsCode`), { target: { value: "a".repeat(16) } });
+        fireEvent.click(submitButton);
+        await waitFor(() => {
+            expect(screen.getByText(/Max length 15 characters/)).toBeInTheDocument();
+        });
+
+        fireEvent.change(screen.getByTestId(`${testId}-name`), { target: { value: "a".repeat(51) } });
+        fireEvent.click(submitButton);
+        await waitFor(() => {
+            expect(screen.getByText(/Max length 50 characters/)).toBeInTheDocument();
+        });
+
+        fireEvent.change(screen.getByTestId(`${testId}-station`), { target: { value: "a".repeat(101) } });
         fireEvent.click(submitButton);
         await waitFor(() => {
             expect(screen.getByText(/Max length 100 characters/)).toBeInTheDocument();
         });
-
-        fireEvent.change(screen.getByTestId(`${testId}-professorEmail`), { target: { value: "a".repeat(201) } });
-        fireEvent.click(submitButton);
-        await waitFor(() => {
-            expect(screen.getByText(/Max length 200 characters/)).toBeInTheDocument();
-        });
-
-        fireEvent.change(screen.getByTestId(`${testId}-explanation`), { target: { value: "a".repeat(1001) } });
-        fireEvent.click(submitButton);
-        await waitFor(() => {
-            expect(screen.getByText(/Max length 1000 characters/)).toBeInTheDocument();
-        });
-
     });
 
 });
