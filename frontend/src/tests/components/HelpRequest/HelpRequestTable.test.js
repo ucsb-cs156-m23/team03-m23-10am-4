@@ -5,6 +5,9 @@ import { QueryClient, QueryClientProvider } from "react-query";
 import { MemoryRouter } from "react-router-dom";
 import { currentUserFixtures } from "fixtures/currentUserFixtures";
 
+import axios from "axios";
+import AxiosMockAdapter from "axios-mock-adapter";
+
 
 const mockedNavigate = jest.fn();
 
@@ -13,7 +16,21 @@ jest.mock('react-router-dom', () => ({
     useNavigate: () => mockedNavigate
 }));
 
-describe("UserTable tests", () => {
+const mockToast = jest.fn();
+
+jest.mock('react-toastify', () => {
+    const originalModule = jest.requireActual('react-toastify');
+    return {
+        __esModule: true,
+        ...originalModule,
+        toast: (x) => mockToast(x)
+    };
+});
+
+describe("HelpRequestTable tests", () => {
+
+  const axiosMock = new AxiosMockAdapter(axios);
+
   const queryClient = new QueryClient();
 
   test("Has the expected column headers and content for ordinary user", () => {
@@ -118,5 +135,31 @@ describe("UserTable tests", () => {
 
   });
 
+  test("Delete button calls delete function for admin user", async () => {
+
+    const currentUser = currentUserFixtures.adminUser;
+
+    axiosMock.onDelete("/api/helprequest").reply(200, "HelpRequest with id 1 was deleted");
+
+    render(
+      <QueryClientProvider client={queryClient}>
+        <MemoryRouter>
+          <HelpRequestTable requests={helpRequestFixtures.threeHelpRequests} currentUser={currentUser} />
+        </MemoryRouter>
+      </QueryClientProvider>
+
+    );
+
+    await waitFor(() => { expect(screen.getByTestId(`HelpRequestTable-cell-row-0-col-id`)).toHaveTextContent("1"); });
+
+    const deleteButton = screen.getByTestId(`HelpRequestTable-cell-row-0-col-Delete-button`);
+    expect(deleteButton).toBeInTheDocument();
+    
+    fireEvent.click(deleteButton);
+
+    await waitFor(() => { expect(mockToast).toBeCalledWith("HelpRequest with id 1 was deleted") });
+
+  });
+  
 });
 
