@@ -127,19 +127,19 @@ function RecommendationRequestForm({ initialContents, submitAction, buttonLabel 
                 </Form.Control.Feedback>
             </Form.Group>         
 
-            {/* <Form.Group className="mb-3" >
-                <Form.Label htmlFor="done">Done</Form.Label>
-                <Form.Control
+            <Form.Group className="mb-3" >
+                <Form.Label htmlFor="done">Resolved?</Form.Label>
+                <Form.Check
                     data-testid={testIdPrefix + "-done"}
                     id="done"
-                    type="radio"
+                    type="checkbox"
                     isInvalid={Boolean(errors.done)}
                     {...register("done")}
                 />
                 <Form.Control.Feedback type="invalid">
                     {errors.done?.message}
                 </Form.Control.Feedback>
-            </Form.Group> */}
+            </Form.Group>
 
 
             <Button
