@@ -23,7 +23,7 @@ describe("UserTable tests", () => {
     render(
       <QueryClientProvider client={queryClient}>
         <MemoryRouter>
-          <HelpRequestTable dates={helpRequestFixtures.threeHelpRequests} currentUser={currentUser} />
+          <HelpRequestTable requests={helpRequestFixtures.threeHelpRequests} currentUser={currentUser} />
         </MemoryRouter>
       </QueryClientProvider>
 
@@ -61,7 +61,7 @@ describe("UserTable tests", () => {
     render(
       <QueryClientProvider client={queryClient}>
         <MemoryRouter>
-          <HelpRequestTable dates={helpRequestFixtures.threeHelpRequests} currentUser={currentUser} />
+          <HelpRequestTable requests={helpRequestFixtures.threeHelpRequests} currentUser={currentUser} />
         </MemoryRouter>
       </QueryClientProvider>
 
@@ -101,7 +101,7 @@ describe("UserTable tests", () => {
     render(
       <QueryClientProvider client={queryClient}>
         <MemoryRouter>
-          <HelpRequestTable dates={helpRequestFixtures.threeHelpRequests} currentUser={currentUser} />
+          <HelpRequestTable requests={helpRequestFixtures.threeHelpRequests} currentUser={currentUser} />
         </MemoryRouter>
       </QueryClientProvider>
 
