@@ -16,7 +16,7 @@ jest.mock('react-router-dom', () => ({
 describe("UCSBDiningCommonsMenuItemForm tests", () => {
     const queryClient = new QueryClient();
 
-    const expectedHeaders = ["Name", "Description"];
+    const expectedHeaders = ["Dining Commons Name", "Item Name", "Station Name"];
     const testId = "UCSBDiningCommonsMenuItemForm";
 
     test("renders correctly with no initialContents", async () => {
@@ -29,6 +29,10 @@ describe("UCSBDiningCommonsMenuItemForm tests", () => {
         );
 
         expect(await screen.findByText(/Create/)).toBeInTheDocument();
+        expect(await screen.findByTestId(`${testId}-diningCommonsCode`)).toBeInTheDocument();
+        expect(await screen.findByTestId(`${testId}-name`)).toBeInTheDocument();
+        expect(await screen.findByTestId(`${testId}-station`)).toBeInTheDocument();
+        expect(await screen.findByTestId(`${testId}-submit`)).toBeInTheDocument();
 
         expectedHeaders.forEach((headerText) => {
             const header = screen.getByText(headerText);
@@ -41,7 +45,7 @@ describe("UCSBDiningCommonsMenuItemForm tests", () => {
         render(
             <QueryClientProvider client={queryClient}>
                 <Router>
-                    <UCSBDiningCommonsMenuItemForm initialContents={ucsbDiningCommonsMenuItemFixtures.oneRestaurant} />
+                    <UCSBDiningCommonsMenuItemForm initialContents={ucsbDiningCommonsMenuItemFixtures.oneItem} />
                 </Router>
             </QueryClientProvider>
         );
@@ -87,15 +91,26 @@ describe("UCSBDiningCommonsMenuItemForm tests", () => {
         const submitButton = screen.getByText(/Create/);
         fireEvent.click(submitButton);
 
-        await screen.findByText(/Name is required/);
-        expect(screen.getByText(/Description is required/)).toBeInTheDocument();
+        await screen.findByText(/Dining Commons Name is required/);
+        expect(screen.getByText(/Item Name is required/)).toBeInTheDocument();
+        expect(screen.getByText(/Station Name is required/)).toBeInTheDocument();
 
-        const nameInput = screen.getByTestId(`${testId}-name`);
-        fireEvent.change(nameInput, { target: { value: "a".repeat(31) } });
+        fireEvent.change(screen.getByTestId(`${testId}-diningCommonsCode`), { target: { value: "a".repeat(16) } });
         fireEvent.click(submitButton);
-
         await waitFor(() => {
-            expect(screen.getByText(/Max length 30 characters/)).toBeInTheDocument();
+            expect(screen.getByText(/Max length 15 characters/)).toBeInTheDocument();
+        });
+
+        fireEvent.change(screen.getByTestId(`${testId}-name`), { target: { value: "a".repeat(51) } });
+        fireEvent.click(submitButton);
+        await waitFor(() => {
+            expect(screen.getByText(/Max length 50 characters/)).toBeInTheDocument();
+        });
+
+        fireEvent.change(screen.getByTestId(`${testId}-station`), { target: { value: "a".repeat(101) } });
+        fireEvent.click(submitButton);
+        await waitFor(() => {
+            expect(screen.getByText(/Max length 100 characters/)).toBeInTheDocument();
         });
     });
 
