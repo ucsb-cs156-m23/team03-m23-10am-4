@@ -53,7 +53,7 @@ function RecommendationRequestForm({ initialContents, submitAction, buttonLabel 
                     type="text"
                     isInvalid={Boolean(errors.name)}
                     {...register("email", {
-                        required: "Email is required.",
+                        required: "Your email is required.",
                         maxLength : {
                             value: 100,
                             message: "Max length 100 characters"
@@ -144,9 +144,7 @@ function RecommendationRequestForm({ initialContents, submitAction, buttonLabel 
                     id="done"
                     type="checkbox"
                     isInvalid={Boolean(errors.done)}
-                    {...register("done", {
-                        required: "Done is required.",
-                    })}
+                    {...register("done")}
                 />
                 <Form.Control.Feedback type="invalid">
                     {errors.done?.message}
