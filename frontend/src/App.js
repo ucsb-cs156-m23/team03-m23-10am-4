@@ -7,6 +7,10 @@ import UCSBDatesIndexPage from "main/pages/UCSBDates/UCSBDatesIndexPage";
 import UCSBDatesCreatePage from "main/pages/UCSBDates/UCSBDatesCreatePage";
 import UCSBDatesEditPage from "main/pages/UCSBDates/UCSBDatesEditPage";
 
+import HelpRequestIndexPage from "main/pages/HelpRequest/HelpRequestIndexPage";
+import HelpRequestCreatePage from "main/pages/HelpRequest/HelpRequestCreatePage";
+import HelpRequestEditPage from "main/pages/HelpRequest/HelpRequestEditPage";
+
 import RestaurantIndexPage from "main/pages/Restaurants/RestaurantIndexPage";
 import RestaurantCreatePage from "main/pages/Restaurants/RestaurantCreatePage";
 import RestaurantEditPage from "main/pages/Restaurants/RestaurantEditPage";
@@ -75,33 +79,48 @@ function App() {
           )
         }
         {
-      hasRole(currentUser, "ROLE_USER") && (
-        <>
-          <Route exact path="/recomendationrequest" element={<RecomendationRequestIndexPage />} />
-        </>
+          hasRole(currentUser, "ROLE_USER") && (
+            <>
+              <Route exact path="/helprequest" element={<HelpRequestIndexPage />} />
+            </>
           )
         }
         {
-      hasRole(currentUser, "ROLE_ADMIN") && (
-        <>
-          <Route exact path="/recomendationrequest/edit/:id" element={<RecomendationRequestEditPage />} />
-          <Route exact path="/recomendationrequest/create" element={<RecomendationRequestCreatePage />} />
-        </>
+          hasRole(currentUser, "ROLE_ADMIN") && (
+            <>
+              <Route exact path="/helprequest/edit/:id" element={<HelpRequestEditPage />} />
+              <Route exact path="/helprequest/create" element={<HelpRequestCreatePage />} />
+            </>
           )
         }
         {
-      hasRole(currentUser, "ROLE_USER") && (
-        <>
-          <Route exact path="/ucsbdiningcommonsmenuitem" element={<UCSBDiningCommonsMenuItemIndexPage />} />
-        </>
+          hasRole(currentUser, "ROLE_USER") && (
+            <>
+              <Route exact path="/recomendationrequest" element={<RecomendationRequestIndexPage />} />
+            </>
           )
         }
         {
-      hasRole(currentUser, "ROLE_ADMIN") && (
-        <>
-          <Route exact path="/ucsbdiningcommonsmenuitem/edit/:id" element={<UCSBDiningCommonsMenuItemEditPage />} />
-          <Route exact path="/ucsbdiningcommonsmenuitem/create" element={<UCSBDiningCommonsMenuItemCreatePage />} />
-        </>
+          hasRole(currentUser, "ROLE_ADMIN") && (
+            <>
+              <Route exact path="/recomendationrequest/edit/:id" element={<RecomendationRequestEditPage />} />
+              <Route exact path="/recomendationrequest/create" element={<RecomendationRequestCreatePage />} />
+            </>
+          )
+        }
+        {
+          hasRole(currentUser, "ROLE_USER") && (
+            <>
+              <Route exact path="/ucsbdiningcommonsmenuitem" element={<UCSBDiningCommonsMenuItemIndexPage />} />
+            </>
+          )
+        }
+        {
+          hasRole(currentUser, "ROLE_ADMIN") && (
+            <>
+              <Route exact path="/ucsbdiningcommonsmenuitem/edit/:id" element={<UCSBDiningCommonsMenuItemEditPage />} />
+              <Route exact path="/ucsbdiningcommonsmenuitem/create" element={<UCSBDiningCommonsMenuItemCreatePage />} />
+            </>
           )
         }
         {
