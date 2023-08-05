@@ -3,7 +3,7 @@ import RecommendationRequestForm from "main/components/RecommendationRequest/Rec
 import { recommendationRequestFixtures } from 'fixtures/recommendationRequestFixtures';
 
 export default {
-    title: 'components/Restaurants/RecommendationRequestForm',
+    title: 'components/RecommendationRequest/RecommendationRequestForm',
     component: RecommendationRequestForm
 };
 
@@ -26,7 +26,7 @@ Create.args = {
 export const Update = Template.bind({});
 
 Update.args = {
-    initialContents: recommendationRequestFixtures.oneRestaurant[0],
+    initialContents: recommendationRequestFixtures.oneRestaurant,
     buttonLabel: "Update",
     submitAction: (data) => {
         console.log("Submit was clicked with data: ", data); 
