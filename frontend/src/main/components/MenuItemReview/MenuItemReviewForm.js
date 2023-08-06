@@ -60,12 +60,14 @@ function MenuItemReviewForm({ initialContents, submitAction, buttonLabel = "Crea
                     isInvalid={Boolean(errors.itemId)}
                     {...register("itemId", {
                         required: "Item Id is required.",
-                        pattern: int_regex,
+                        pattern: {
+                            value: int_regex,
+                            message: "Item Id must be a number"
+                        },
                     })}
                 />
                 <Form.Control.Feedback type="invalid">
-                    {errors.itemId && 'Item Id is required. '}
-                    {errors.itemId?.type === 'pattern' && 'Item Id must be a number'}
+                    {errors.itemId?.message}
                 </Form.Control.Feedback>
             </Form.Group>
 
@@ -78,12 +80,14 @@ function MenuItemReviewForm({ initialContents, submitAction, buttonLabel = "Crea
                     isInvalid={Boolean(errors.reviewerEmail)}
                     {...register("reviewerEmail", {
                         required: "Reviewer Email is required.",
-                        pattern: email_regex,
+                        pattern: {
+                            value: email_regex,
+                            message: "Reviewer Email must be a valid email address"
+                        },
                     })}
                 />
                 <Form.Control.Feedback type="invalid">
-                    {errors.reviewerEmail && 'Reviewer Email is required. '}
-                    {errors.reviewerEmail?.type === 'pattern' && 'Reviewer Email must be a valid email address'}
+                    {errors.reviewerEmail?.message}
                 </Form.Control.Feedback>
             </Form.Group>
 
@@ -96,12 +100,14 @@ function MenuItemReviewForm({ initialContents, submitAction, buttonLabel = "Crea
                     isInvalid={Boolean(errors.stars)}
                     {...register("stars", {
                         required: "Stars is required.",
-                        pattern: stars_regex,
+                        pattern: {
+                            value: stars_regex,
+                            message: "Stars must be a number between 1 and 5"
+                        },
                     })}
                 />
                 <Form.Control.Feedback type="invalid">
-                    {errors.stars && 'Stars is required. '}
-                    {errors.stars?.type === 'pattern' && 'Stars must be a number between 1 and 5'}
+                    {errors.stars?.message}
                 </Form.Control.Feedback>
             </Form.Group>
 
@@ -114,12 +120,14 @@ function MenuItemReviewForm({ initialContents, submitAction, buttonLabel = "Crea
                     isInvalid={Boolean(errors.dateReviewed)}
                     {...register("dateReviewed", {
                         required: "Date Reviewed is required.",
-                        pattern: isodate_regex,
+                        pattern: {
+                            value: isodate_regex,
+                            message: "Date Reviewed must be a valid date"
+                        },
                     })}
                 />
                 <Form.Control.Feedback type="invalid">
-                    {errors.dateReviewed && 'Date Reviewed is required. '}
-                    {errors.dateReviewed?.type === 'pattern' && 'Date Reviewed must be a valid date'}
+                    {errors.dateReviewed?.message}
                 </Form.Control.Feedback>
             </Form.Group>
 
@@ -135,7 +143,7 @@ function MenuItemReviewForm({ initialContents, submitAction, buttonLabel = "Crea
                     })}
                 />
                 <Form.Control.Feedback type="invalid">
-                    {errors.comments && 'Comments is required. '}
+                    {errors.comments?.message}
                 </Form.Control.Feedback>
             </Form.Group>
 
