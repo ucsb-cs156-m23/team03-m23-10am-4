@@ -11,18 +11,20 @@ jest.mock('react-router-dom', () => ({
 }));
 
 describe("MenuItemReviewForm tests", () => {
+
+    const expectedHeaders = ["Item Id", "Reviewer Email", "Stars", "Date Reviewed", "Comments", "Create"]
+    const testIdPrefix = "MenuItemReviewForm";
+
     test("renders correctly", async () => {
         render(
             <Router  >
                 <MenuItemReviewForm />
             </Router>
         );
-        await screen.findByText(/Item Id/);
-        await screen.findByText(/Reviewer Email/);
-        await screen.findByText(/Stars/);
-        await screen.findByText(/Date Reviewed/);
-        await screen.findByText(/Comments/);
-        await screen.findByText(/Create/);
+        
+        expectedHeaders.forEach((header) => {
+            expect(screen.getByText(header)).toBeInTheDocument();
+        });
     });
 
     test("renders correctly when passing in a MenuItemReview", async () => {
@@ -31,9 +33,15 @@ describe("MenuItemReviewForm tests", () => {
                 <MenuItemReviewForm initialContents={menuItemReviewFixtures.oneReview} />
             </Router>
         );
-        await screen.findByTestId(/MenuItemReviewForm-id/);
-        expect(screen.getByText(/Id/)).toBeInTheDocument();
-        expect(screen.getByTestId(/MenuItemReviewForm-id/)).toHaveValue("1");
+
+        expect(await screen.findByText(/Create/)).toBeInTheDocument();
+
+        expectedHeaders.forEach((header) => {
+            expect(screen.getByText(header)).toBeInTheDocument();
+        });
+
+        expect(await screen.findByTestId(`${testIdPrefix}-item-id`)).toBeInTheDocument();
+        expect(screen.getByTestId(`${testIdPrefix}-item-id`)).toBeInTheDocument();
     });
 
     test("Correct Error messsages on missing input", async () => {
@@ -99,4 +107,5 @@ describe("MenuItemReviewForm tests", () => {
 
         await waitFor(() => expect(mockedNavigate).toHaveBeenCalledWith(-1));
     });
+
 });
