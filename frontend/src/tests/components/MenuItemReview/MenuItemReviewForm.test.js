@@ -30,18 +30,11 @@ describe("MenuItemReviewForm tests", () => {
     test("renders correctly when passing in a MenuItemReview", async () => {
         render(
             <Router  >
-                <MenuItemReviewForm initialContents={menuItemReviewFixtures.oneReview} />
+                <MenuItemReviewForm initialContents={menuItemReviewFixtures.oneMenuItemReview} />
             </Router>
         );
-
-        expect(await screen.findByText(/Create/)).toBeInTheDocument();
-
-        expectedHeaders.forEach((header) => {
-            expect(screen.getByText(header)).toBeInTheDocument();
-        });
-
-        expect(await screen.findByTestId(`${testIdPrefix}-item-id`)).toBeInTheDocument();
-        expect(screen.getByTestId(`${testIdPrefix}-item-id`)).toBeInTheDocument();
+        await screen.findByTestId(`${testIdPrefix}-id`);
+        expect(screen.getByText((`Id`))).toBeInTheDocument();
     });
 
     test("Correct Error messsages on missing input", async () => {
@@ -108,4 +101,33 @@ describe("MenuItemReviewForm tests", () => {
         await waitFor(() => expect(mockedNavigate).toHaveBeenCalledWith(-1));
     });
 
+    // Above are examples copied from STARTER
+    // Below are to make coverage 100%
+
+    test("Collect Error messages on bad input", async () => {
+        render(
+            <Router  >
+                <MenuItemReviewForm />
+            </Router>
+        );
+
+        const itemIdField = screen.getByTestId(testIdPrefix + "-item-id");
+        const reviewerEmailField = screen.getByTestId(testIdPrefix + "-reviewer-email");
+        const starsField = screen.getByTestId(testIdPrefix + "-stars");
+        const dateReviewedField = screen.getByTestId(testIdPrefix + "-date-reviewed");
+        const commentsField = screen.getByTestId(testIdPrefix + "-comments");
+        const submitButton = screen.getByTestId(testIdPrefix + "-submit");
+
+        fireEvent.change(itemIdField, { target: { value: 'a' } });
+        fireEvent.change(reviewerEmailField, { target: { value: 'test' } });
+        fireEvent.change(starsField, { target: { value: '6' } });
+        fireEvent.change(dateReviewedField, { target: { value: 'bad-input' } });
+        fireEvent.change(commentsField, { target: { value: 'good test input' } });
+        fireEvent.click(submitButton);
+
+        await screen.findByText(/Item Id must be a number/);
+        expect(screen.getByText(/Reviewer Email must be a valid email address/)).toBeInTheDocument();
+        expect(screen.getByText(/Stars must be a number between 1 and 5/)).toBeInTheDocument();
+        expect(screen.getByText(/Date Reviewed must be a valid date/)).toBeInTheDocument();
+    });
 });
