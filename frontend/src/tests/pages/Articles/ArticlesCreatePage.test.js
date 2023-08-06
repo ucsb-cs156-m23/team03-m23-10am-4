@@ -59,7 +59,7 @@ describe("ArticlesCreatePage tests", () => {
             url: "https://www.article1.com",
             explanation: "This is article 1",
             email: "email1@gmail.com",
-            dateAdded: "2023-03-26T12:00:00"
+            dateAdded: "2023-03-26T12:00"
         };
 
         axiosMock.onPost("/api/articles/post").reply( 202, article );
@@ -101,7 +101,7 @@ describe("ArticlesCreatePage tests", () => {
                 "url": "https://www.article1.com",
                 "explanation": "This is article 1",
                 "email": "email1@gmail.com",
-                "dateAdded": "2023-03-26T12:00:00"
+                "dateAdded": "2023-03-26T12:00"
         });
 
         expect(mockToast).toBeCalledWith("New article Created - id: 17 name: Article 1");

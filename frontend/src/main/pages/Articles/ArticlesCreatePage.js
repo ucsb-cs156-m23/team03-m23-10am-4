@@ -45,7 +45,7 @@ export default function ArticlesCreatePage({storybook=false}) {
       <div className="pt-2">
         <h1>Create New Article</h1>
 
-        <ArticlesForm onSubmit={onSubmit} />
+        <ArticlesForm submitAction={onSubmit} />
 
       </div>
     </BasicLayout>
