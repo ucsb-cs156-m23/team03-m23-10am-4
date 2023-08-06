@@ -26,7 +26,7 @@ jest.mock('react-router-dom', () => ({
 
 describe("ArticlesTable tests", () => {
     const queryClient = new QueryClient();
-    const axiosMock = new AxiosMockAdapter(axios);
+    // const axiosMock = new AxiosMockAdapter(axios);
     const testId = "ArticlesTable";
 
     test("renders empty table correctly", () => {
