@@ -28,7 +28,7 @@ import java.time.LocalDateTime;
 import javax.validation.Valid;
 
 @Tag(name = "UCSBDiningCommonsMenuItem")
-@RequestMapping("/api/UCSBDiningCommonsMenuItem")
+@RequestMapping("/api/ucsbdiningcommonsmenuitem")
 @RestController
 @Slf4j
 public class UCSBDiningCommonsMenuItemController extends ApiController{
@@ -39,7 +39,7 @@ public class UCSBDiningCommonsMenuItemController extends ApiController{
     @Operation(summary= "List all UCSB Dining Commons Menu Items")
     @PreAuthorize("hasRole('ROLE_USER')")
     @GetMapping("/all")
-    public Iterable<UCSBDiningCommonsMenuItem> allUCSBDiningCommonsMenuItems() {
+    public Iterable<UCSBDiningCommonsMenuItem> allUCSBDiningCommonsMenuItem() {
         Iterable<UCSBDiningCommonsMenuItem> uCSBDiningCommonsMenuItem = ucsbDiningCommonsMenuItemRepository.findAll();
         return uCSBDiningCommonsMenuItem;
     }
