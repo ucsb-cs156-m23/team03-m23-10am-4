@@ -57,6 +57,7 @@ export default function RecommendationRequestTable({
         },
          {
             Header: 'Resolved?',
+            id: 'done',
             accessor: (row, _rowIndex) => String(row.done),
          }
     ];
