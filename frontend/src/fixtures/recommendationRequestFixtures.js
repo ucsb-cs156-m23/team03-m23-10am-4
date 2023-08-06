@@ -37,7 +37,7 @@ const recommendationRequestFixtures = {
             "requesterEmail": "testing3@ucsb.edu",
             "professorEmail": "request3@ucsb.edu",
             "explanation": "I need a recommendation for a job part 3",
-            "dateRequested": "2021-1-01T00:00:00.000",
+            "dateRequested": "2021-01-01T00:00:00.000",
             "dateNeeded": "2021-10-15T00:00:00.000",
             "done": false
         }
