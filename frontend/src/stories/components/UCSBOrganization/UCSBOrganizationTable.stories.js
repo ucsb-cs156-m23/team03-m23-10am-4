@@ -5,7 +5,7 @@ import { currentUserFixtures } from 'fixtures/currentUserFixtures';
 import { rest } from "msw";
 
 export default {
-    title: 'components/UCSBOrganization/ucsbOrganizationFixtures',
+    title: 'components/UCSBOrganization/UCSBOrganizationTable',
     component: UCSBOrganizationTable
 };
 

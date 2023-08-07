@@ -22,19 +22,21 @@ function UCSBOrganizationForm({ initialContents, submitAction, buttonLabel = "Cr
     return (
         <Form onSubmit={handleSubmit(submitAction)}>
 
-            {initialContents && (
+            {
                 <Form.Group className="mb-3" >
-                    <Form.Label htmlFor="id">Id</Form.Label>
+                    <Form.Label htmlFor="id">Name</Form.Label>
                     <Form.Control
                         data-testid={testIdPrefix + "-orgCode"}
                         id="orgCode"
                         type="text"
                         {...register("orgCode")}
-                        value={initialContents.orgCode}
-                        disabled
+                        value={"Name for your new Organization"}
+
                     />
                 </Form.Group>
-            )}
+            }
+
+
 
             <Form.Group className="mb-3" >
                 <Form.Label htmlFor="name">Short name of org</Form.Label>
@@ -73,8 +75,8 @@ function UCSBOrganizationForm({ initialContents, submitAction, buttonLabel = "Cr
             </Form.Group>
 
             <Form.Group className="mb-3" >
-                <Form.Label htmlFor="inactive">Status</Form.Label>
-                <Form.Control
+                <Form.Label htmlFor="inactive">Active Status</Form.Label>
+                <Form.Check
                     data-testid={testIdPrefix + "-inactive"}
                     id="inactive"
                     type="radio"
@@ -109,3 +111,4 @@ function UCSBOrganizationForm({ initialContents, submitAction, buttonLabel = "Cr
 }
 
 export default UCSBOrganizationForm;
+
