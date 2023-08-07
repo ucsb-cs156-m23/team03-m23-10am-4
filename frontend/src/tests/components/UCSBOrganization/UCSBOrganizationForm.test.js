@@ -100,9 +100,11 @@ describe("UCSBOrganizationForm tests", () => {
             expect(screen.getByText(/Max length 100 characters/)).toBeInTheDocument();
         });
 
-
+        // eslint-disable-next-line no-unused-vars
         const Input2 = screen.getByTestId(`${testId}-orgTranslation`);
+        // eslint-disable-next-line no-unused-vars
         const Input3 = screen.getByTestId(`${testId}-inactive`);
+        // eslint-disable-next-line no-unused-vars
         const subbtn = screen.getByTestId(`${testId}-submit`);
     });
 
