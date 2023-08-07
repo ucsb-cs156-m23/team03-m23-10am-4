@@ -89,14 +89,21 @@ describe("UCSBOrganizationForm tests", () => {
 
         await screen.findByText(/orgTranslationShort is required/);
         expect(screen.getByText(/orgTranslation is required/)).toBeInTheDocument();
+        expect(screen.getByText(/inactive is required/)).toBeInTheDocument();
 
         const nameInput = screen.getByTestId(`${testId}-orgTranslationShort`);
         fireEvent.change(nameInput, { target: { value: "a".repeat(101) } });
         fireEvent.click(submitButton);
 
+
         await waitFor(() => {
             expect(screen.getByText(/Max length 100 characters/)).toBeInTheDocument();
         });
+
+
+        const Input2 = screen.getByTestId(`${testId}-orgTranslation`);
+        const Input3 = screen.getByTestId(`${testId}-inactive`);
+        const subbtn = screen.getByTestId(`${testId}-submit`);
     });
 
 });

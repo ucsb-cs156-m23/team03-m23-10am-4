@@ -1,11 +1,11 @@
 import React from 'react';
 import UCSBOrganizationTable from 'main/components/UCSBOrganization/UCSBOrganizationTable';
-import { ucsbOrganizationFixtures } from 'fixtures/UCSBOrganizationFixtures';
+import { ucsbOrganizationFixtures } from 'fixtures/ucsbOrganizationFixtures';
 import { currentUserFixtures } from 'fixtures/currentUserFixtures';
 import { rest } from "msw";
 
 export default {
-    title: 'components/UCSBOrganization/UCSBOrganizationTable',
+    title: 'components/UCSBOrganization/ucsbOrganizationFixtures',
     component: UCSBOrganizationTable
 };
 
