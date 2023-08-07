@@ -92,14 +92,17 @@ describe("UCSBOrganizationTable tests", () => {
         expect(screen.getByTestId(`${testId}-cell-row-0-col-orgCode`)).toHaveTextContent("1");
         expect(screen.getByTestId(`${testId}-cell-row-0-col-orgTranslationShort`)).toHaveTextContent("A");
         expect(screen.getByTestId(`${testId}-cell-row-0-col-orgTranslation`)).toHaveTextContent("AAA");
+        expect(screen.getByTestId(`${testId}-cell-row-0-col-inactive`)).toHaveTextContent("true");
 
         expect(screen.getByTestId(`${testId}-cell-row-1-col-orgCode`)).toHaveTextContent("2");
         expect(screen.getByTestId(`${testId}-cell-row-1-col-orgTranslationShort`)).toHaveTextContent("B");
         expect(screen.getByTestId(`${testId}-cell-row-1-col-orgTranslation`)).toHaveTextContent("BBB");
+        expect(screen.getByTestId(`${testId}-cell-row-1-col-inactive`)).toHaveTextContent("false");
 
         expect(screen.getByTestId(`${testId}-cell-row-2-col-orgCode`)).toHaveTextContent("3");
         expect(screen.getByTestId(`${testId}-cell-row-2-col-orgTranslationShort`)).toHaveTextContent("C");
         expect(screen.getByTestId(`${testId}-cell-row-2-col-orgTranslation`)).toHaveTextContent("CCC");
+        expect(screen.getByTestId(`${testId}-cell-row-2-col-inactive`)).toHaveTextContent("true");
 
         const editButton = screen.getByTestId(`${testId}-cell-row-0-col-Edit-button`);
         expect(editButton).toBeInTheDocument();

@@ -30,7 +30,6 @@ function UCSBOrganizationForm({ initialContents, submitAction, buttonLabel = "Cr
                         id="orgCode"
                         type="text"
                         {...register("orgCode")}
-                        value={"Name for your new Organization"}
 
                     />
                 </Form.Group>
