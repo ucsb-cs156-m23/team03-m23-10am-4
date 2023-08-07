@@ -1,4 +1,4 @@
-import { Button, Form, Row, Col } from 'react-bootstrap';
+import { Button, Form} from 'react-bootstrap';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 
@@ -71,11 +71,6 @@ function UCSBOrganizationForm({ initialContents, submitAction, buttonLabel = "Cr
                     {errors.orgTranslation?.message}
                 </Form.Control.Feedback>
             </Form.Group>
-
-
-
-
-
 
             <Form.Group className="mb-3" >
                 <Form.Label htmlFor="inactive">Status</Form.Label>
