@@ -11,15 +11,24 @@ export default function MenuItemReviewEditPage({storybook=false}) {
 
   const { data: menuitemreview, error: _error, status: _status } =
     useBackend(
-      [`/api/menuitemreview/${id}`],
-      { method: "GET", url: `/api/menuitemreview/${id}` },
+      [`/api/menuitemreview?id=${id}`],
+      {
+        method: "GET",
+        url: `/api/menuitemreview`,
+        params: {
+          id: id,
+        } 
+      },
     );
 
     const objectToAxiosPutParams = (menuitemreview) => ({
-      url: `/api/menuitemreview/${id}`,
-      method: "put",
+      url: `/api/menuitemreview`,
+      method: "PUT",
+      params: {
+        id: id,
+      },
       data: {
-        id: menuitemreview.id,
+        // id: menuitemreview.id,
         itemId: menuitemreview.itemId,
         reviewerEmail: menuitemreview.reviewerEmail,
         stars: menuitemreview.stars,
@@ -36,7 +45,7 @@ export default function MenuItemReviewEditPage({storybook=false}) {
         objectToAxiosPutParams,
         { onSuccess },
         // Stryker disable next-line all : hard to set up test for caching
-        [`/api/menuitemreview/${id}`]
+        [`/api/menuitemreview?id=${id}`]
       );
 
       const { isSuccess } = mutation;
@@ -54,7 +63,7 @@ export default function MenuItemReviewEditPage({storybook=false}) {
           <div className="pt-2">
             <h1>Edit MenuItemReview</h1>
             {
-              menuitemreview && <MenuItemReviewForm submitAction={onSubmit} buttonLabel={"Update"} initialMenuItemReview={menuitemreview} />
+              menuitemreview && <MenuItemReviewForm submitAction={onSubmit} buttonLabel={"Update"} initialContents={menuitemreview} />
             }
           </div>
         </BasicLayout>
