@@ -64,7 +64,7 @@ jobs:
 
       # Modified from https://stackoverflow.com/a/74268200
 
-      - name: Get changed files
+      - name: Run stryker on changed files
         id: changed-files
         run: | 
             git diff --name-only -r HEAD^1 HEAD |                   # get changed files in PR
@@ -74,16 +74,8 @@ jobs:
             sort -u |                                               # remove duplicates
             xargs printf '%s,' |                                    # convert to comma separated list
             sed 's/.$//' |                                          # remove trailing comma
-            xargs -I {} echo "changed_files={}" >> $GITHUB_OUTPUT   # set output variable
-
-      - name: Run Stryker on files
-        run: |
-            for file in ${{ steps.changed-files.outputs.changed_files }}; do
-              npx stryker run -m file
-            done
-
-      # - run: npx stryker run --incremental --incrementalFile history/stryker-incremental-${{env.pr_number}}.json
-      #   working-directory: ./frontend
+            npx stryker run -m                                      # set output variable
+        working-directory: ./frontend
 
       # - name: Upload stryker incremental file to Artifacts
       #   if: always() # always upload artifacts, even if tests fail
