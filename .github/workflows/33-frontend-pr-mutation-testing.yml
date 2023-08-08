@@ -64,6 +64,9 @@ jobs:
 
       # Modified from https://stackoverflow.com/a/74268200
 
+      - name: Get github actions branches
+        run: git branch -a
+
       - name: Run stryker on changed files
         id: changed-files
         run: | 
