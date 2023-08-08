@@ -64,7 +64,6 @@ jobs:
 
       # Modified from https://stackoverflow.com/a/74268200
 
-      # run a command that outputs a list of files that have changed over the entire branch history
       - name: Run stryker on changed files
         id: changed-files
         run: | 
