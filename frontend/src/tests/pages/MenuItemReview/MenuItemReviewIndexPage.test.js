@@ -13,7 +13,7 @@ describe("MenuItemReviewIndexPage tests", () => {
 
     const axiosMock = new AxiosMockAdapter(axios);
 
-    const setupUserOnly = () => {
+    const _setupUserOnly = () => {
         axiosMock.reset();
         axiosMock.resetHistory();
         axiosMock.onGet("/api/currentUser").reply(200, apiCurrentUserFixtures.userOnly);
