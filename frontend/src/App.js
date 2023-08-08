@@ -100,15 +100,15 @@ function App() {
         {
           hasRole(currentUser, "ROLE_USER") && (
             <>
-              <Route exact path="/recomendationrequest" element={<RecomendationRequestIndexPage />} />
+              <Route exact path="/recommendationrequest" element={<RecomendationRequestIndexPage />} />
             </>
           )
         }
         {
           hasRole(currentUser, "ROLE_ADMIN") && (
             <>
-              <Route exact path="/recomendationrequest/edit/:id" element={<RecomendationRequestEditPage />} />
-              <Route exact path="/recomendationrequest/create" element={<RecomendationRequestCreatePage />} />
+              <Route exact path="/recommendationrequest/edit/:id" element={<RecomendationRequestEditPage />} />
+              <Route exact path="/recommendationrequest/create" element={<RecomendationRequestCreatePage />} />
             </>
           )
         }
