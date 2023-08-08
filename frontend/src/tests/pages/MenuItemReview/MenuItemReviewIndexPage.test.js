@@ -36,6 +36,7 @@ describe("MenuItemReviewIndexPage tests", () => {
         );
 
         // assert
+        // FIXME: test hasn't been updated
         expect(screen.getByText("Index page not yet implemented")).toBeInTheDocument();
         expect(screen.getByText("Create")).toBeInTheDocument();
         expect(screen.getByText("Edit")).toBeInTheDocument();
