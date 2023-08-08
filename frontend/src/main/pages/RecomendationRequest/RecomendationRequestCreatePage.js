@@ -4,7 +4,7 @@ import { Navigate } from 'react-router-dom'
 import { useBackendMutation } from "main/utils/useBackend";
 import { toast } from "react-toastify";
 
-export default function RestaurantCreatePage({storybook=false}) {
+export default function RecomendationRequestCreatePage({storybook=false}) {
 
   const objectToAxiosParams = (request) => ({
     url: "/api/recommendationrequest/post",
@@ -21,7 +21,7 @@ export default function RestaurantCreatePage({storybook=false}) {
   });
 
   const onSuccess = (request) => {
-    toast(`New request Created - id: ${request.id}`);
+    toast(`New request Created - email: ${request.requesterEmail}`);
   }
 
   const mutation = useBackendMutation(
