@@ -68,7 +68,7 @@ jobs:
       - name: Run stryker on changed files
         id: changed-files
         run: | 
-            git diff --name-only -r main HEAD |                     # get changed files in PR
+            git diff --name-only -r origin/HEAD HEAD |              # get changed files in PR
             grep "\.js" |                                           # remove non .js files from list
             sed 's|\(.*\)tests\(.*\)\.test.js|\1main\2.js|' |       # alters test files to main files to account for changed tests
             grep -v "\.stories\.js" |                               # remove .stories.js files from list
@@ -77,7 +77,7 @@ jobs:
             xargs -I{} sh -c '[ -f "{}" ] && echo "{}"' |           # check if file exists
             xargs printf '%s,' |                                    # convert to comma separated list
             sed 's/.$//' |                                          # remove trailing comma
-            xargs npx stryker run -m                                # set output variable
+            xargs -r npx stryker run -m                             # set output variable
         working-directory: ./frontend
 
       # - name: Upload stryker incremental file to Artifacts
