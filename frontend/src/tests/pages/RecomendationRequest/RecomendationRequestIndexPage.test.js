@@ -2,7 +2,6 @@ import { render, screen, waitFor, fireEvent } from "@testing-library/react";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { MemoryRouter } from "react-router-dom";
 import mockConsole from "jest-mock-console";
-import {mockToast} from "react-toastify";
 
 import RecomendationRequestIndexPage from "main/pages/RecomendationRequest/RecomendationRequestIndexPage";
 
