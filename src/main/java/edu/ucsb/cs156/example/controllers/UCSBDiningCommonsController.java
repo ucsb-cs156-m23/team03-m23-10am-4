@@ -7,7 +7,6 @@ import edu.ucsb.cs156.example.repositories.UCSBDiningCommonsRepository;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.tags.Tag;
-import lombok.extern.slf4j.Slf4j;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -25,7 +24,6 @@ import javax.validation.Valid;
 @Tag(name = "UCSBDiningCommons")
 @RequestMapping("/api/ucsbdiningcommons")
 @RestController
-@Slf4j
 public class UCSBDiningCommonsController extends ApiController {
 
     @Autowired

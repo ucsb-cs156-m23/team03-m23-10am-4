@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 
 import java.util.Map;
 
-@Slf4j
 public abstract class ApiController {
   @Autowired
   private CurrentUserService currentUserService;
