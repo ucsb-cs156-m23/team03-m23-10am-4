@@ -65,6 +65,7 @@ describe("UCSBOrganizationCreatePage tests", () => {
             inactive: false
         };
 
+        // eslint-disable-next-line no-unused-vars
         const item2 = {
             orgCode: "6",
             orgTranslationShort: "E",
@@ -99,33 +100,10 @@ describe("UCSBOrganizationCreatePage tests", () => {
         fireEvent.change(Input3, { target: { value: false } });
         fireEvent.click(createButton);
 
-        /*
-             axios.post("/api/UCSBOrganization/post", {
-            url: "/api/UCSBOrganization/post",
-            method: "POST",
-            params: {
-                orgCode: item2.orgCode,
-                orgTranslationShort: item2.orgTranslationShort,
-                orgTranslation: item2.orgTranslation,
-                inactive: item2.inactive,
-            }
-        })
-            .then(response => {
-                console.log(response.data);
-            })
-            .catch(error => {
-                console.error(error);
-            });
-        */
-
-
-
-
         await waitFor(() => expect(axiosMock.history.post.length).toBe(1));
 
         //console.log(axiosMock.history.post[0]);
         //console.log(JSON.parse(axiosMock.history.post[0].data).params);
-
         //expect(axiosMock.history.post[0].data.params).toEqual(item2);
 
         // assert - check that the toast was called with the expected message
@@ -135,4 +113,23 @@ describe("UCSBOrganizationCreatePage tests", () => {
     });
 
 });
+
+/*
+     axios.post("/api/UCSBOrganization/post", {
+    url: "/api/UCSBOrganization/post",
+    method: "POST",
+    params: {
+        orgCode: item2.orgCode,
+        orgTranslationShort: item2.orgTranslationShort,
+        orgTranslation: item2.orgTranslation,
+        inactive: item2.inactive,
+    }
+})
+    .then(response => {
+        console.log(response.data);
+    })
+    .catch(error => {
+        console.error(error);
+    });
+*/
 
