@@ -7,7 +7,6 @@ import edu.ucsb.cs156.example.repositories.UCSBDiningCommonsRepository;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.tags.Tag;
-import lombok.extern.slf4j.Slf4j;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -25,8 +24,7 @@ import javax.validation.Valid;
 @Tag(name = &quot;UCSBDiningCommons&quot;)
 @RequestMapping(&quot;/api/ucsbdiningcommons&quot;)
 @RestController
-<span class="fc" id="L28">@Slf4j</span>
-<span class="fc" id="L29">public class UCSBDiningCommonsController extends ApiController {</span>
+<span class="fc" id="L27">public class UCSBDiningCommonsController extends ApiController {</span>
 
     @Autowired
     UCSBDiningCommonsRepository ucsbDiningCommonsRepository;
@@ -35,8 +33,8 @@ import javax.validation.Valid;
     @PreAuthorize(&quot;hasRole('ROLE_USER')&quot;)
     @GetMapping(&quot;/all&quot;)
     public Iterable&lt;UCSBDiningCommons&gt; allCommonss() {
-<span class="fc" id="L38">        Iterable&lt;UCSBDiningCommons&gt; commons = ucsbDiningCommonsRepository.findAll();</span>
-<span class="fc" id="L39">        return commons;</span>
+<span class="fc" id="L36">        Iterable&lt;UCSBDiningCommons&gt; commons = ucsbDiningCommonsRepository.findAll();</span>
+<span class="fc" id="L37">        return commons;</span>
     }
 
     @Operation(summary= &quot;Get a single commons&quot;)
@@ -44,10 +42,10 @@ import javax.validation.Valid;
     @GetMapping(&quot;&quot;)
     public UCSBDiningCommons getById(
             @Parameter(name=&quot;code&quot;) @RequestParam String code) {
-<span class="fc" id="L47">        UCSBDiningCommons commons = ucsbDiningCommonsRepository.findById(code)</span>
-<span class="fc" id="L48">                .orElseThrow(() -&gt; new EntityNotFoundException(UCSBDiningCommons.class, code));</span>
+<span class="fc" id="L45">        UCSBDiningCommons commons = ucsbDiningCommonsRepository.findById(code)</span>
+<span class="fc" id="L46">                .orElseThrow(() -&gt; new EntityNotFoundException(UCSBDiningCommons.class, code));</span>
 
-<span class="fc" id="L50">        return commons;</span>
+<span class="fc" id="L48">        return commons;</span>
     }
 
     @Operation(summary= &quot;Create a new commons&quot;)
@@ -64,18 +62,18 @@ import javax.validation.Valid;
         )
         {
 
-<span class="fc" id="L67">        UCSBDiningCommons commons = new UCSBDiningCommons();</span>
-<span class="fc" id="L68">        commons.setCode(code);</span>
-<span class="fc" id="L69">        commons.setName(name);</span>
-<span class="fc" id="L70">        commons.setHasSackMeal(hasSackMeal);</span>
-<span class="fc" id="L71">        commons.setHasTakeOutMeal(hasTakeOutMeal);</span>
-<span class="fc" id="L72">        commons.setHasDiningCam(hasDiningCam);</span>
-<span class="fc" id="L73">        commons.setLatitude(latitude);</span>
-<span class="fc" id="L74">        commons.setLongitude(longitude);</span>
+<span class="fc" id="L65">        UCSBDiningCommons commons = new UCSBDiningCommons();</span>
+<span class="fc" id="L66">        commons.setCode(code);</span>
+<span class="fc" id="L67">        commons.setName(name);</span>
+<span class="fc" id="L68">        commons.setHasSackMeal(hasSackMeal);</span>
+<span class="fc" id="L69">        commons.setHasTakeOutMeal(hasTakeOutMeal);</span>
+<span class="fc" id="L70">        commons.setHasDiningCam(hasDiningCam);</span>
+<span class="fc" id="L71">        commons.setLatitude(latitude);</span>
+<span class="fc" id="L72">        commons.setLongitude(longitude);</span>
 
-<span class="fc" id="L76">        UCSBDiningCommons savedCommons = ucsbDiningCommonsRepository.save(commons);</span>
+<span class="fc" id="L74">        UCSBDiningCommons savedCommons = ucsbDiningCommonsRepository.save(commons);</span>
 
-<span class="fc" id="L78">        return savedCommons;</span>
+<span class="fc" id="L76">        return savedCommons;</span>
     }
 
     @Operation(summary= &quot;Delete a UCSBDiningCommons&quot;)
@@ -83,11 +81,11 @@ import javax.validation.Valid;
     @DeleteMapping(&quot;&quot;)
     public Object deleteCommons(
             @Parameter(name=&quot;code&quot;) @RequestParam String code) {
-<span class="fc" id="L86">        UCSBDiningCommons commons = ucsbDiningCommonsRepository.findById(code)</span>
-<span class="fc" id="L87">                .orElseThrow(() -&gt; new EntityNotFoundException(UCSBDiningCommons.class, code));</span>
+<span class="fc" id="L84">        UCSBDiningCommons commons = ucsbDiningCommonsRepository.findById(code)</span>
+<span class="fc" id="L85">                .orElseThrow(() -&gt; new EntityNotFoundException(UCSBDiningCommons.class, code));</span>
 
-<span class="fc" id="L89">        ucsbDiningCommonsRepository.delete(commons);</span>
-<span class="fc" id="L90">        return genericMessage(&quot;UCSBDiningCommons with id %s deleted&quot;.formatted(code));</span>
+<span class="fc" id="L87">        ucsbDiningCommonsRepository.delete(commons);</span>
+<span class="fc" id="L88">        return genericMessage(&quot;UCSBDiningCommons with id %s deleted&quot;.formatted(code));</span>
     }
 
     @Operation(summary= &quot;Update a single commons&quot;)
@@ -97,20 +95,20 @@ import javax.validation.Valid;
             @Parameter(name=&quot;code&quot;) @RequestParam String code,
             @RequestBody @Valid UCSBDiningCommons incoming) {
 
-<span class="fc" id="L100">        UCSBDiningCommons commons = ucsbDiningCommonsRepository.findById(code)</span>
-<span class="fc" id="L101">                .orElseThrow(() -&gt; new EntityNotFoundException(UCSBDiningCommons.class, code));</span>
+<span class="fc" id="L98">        UCSBDiningCommons commons = ucsbDiningCommonsRepository.findById(code)</span>
+<span class="fc" id="L99">                .orElseThrow(() -&gt; new EntityNotFoundException(UCSBDiningCommons.class, code));</span>
 
 
-<span class="fc" id="L104">        commons.setName(incoming.getName());  </span>
-<span class="fc" id="L105">        commons.setHasSackMeal(incoming.getHasSackMeal());</span>
-<span class="fc" id="L106">        commons.setHasTakeOutMeal(incoming.getHasTakeOutMeal());</span>
-<span class="fc" id="L107">        commons.setHasDiningCam(incoming.getHasDiningCam());</span>
-<span class="fc" id="L108">        commons.setLatitude(incoming.getLatitude());</span>
-<span class="fc" id="L109">        commons.setLongitude(incoming.getLongitude());</span>
+<span class="fc" id="L102">        commons.setName(incoming.getName());  </span>
+<span class="fc" id="L103">        commons.setHasSackMeal(incoming.getHasSackMeal());</span>
+<span class="fc" id="L104">        commons.setHasTakeOutMeal(incoming.getHasTakeOutMeal());</span>
+<span class="fc" id="L105">        commons.setHasDiningCam(incoming.getHasDiningCam());</span>
+<span class="fc" id="L106">        commons.setLatitude(incoming.getLatitude());</span>
+<span class="fc" id="L107">        commons.setLongitude(incoming.getLongitude());</span>
 
-<span class="fc" id="L111">        ucsbDiningCommonsRepository.save(commons);</span>
+<span class="fc" id="L109">        ucsbDiningCommonsRepository.save(commons);</span>
 
-<span class="fc" id="L113">        return commons;</span>
+<span class="fc" id="L111">        return commons;</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>
