@@ -65,14 +65,6 @@ describe("UCSBOrganizationCreatePage tests", () => {
             inactive: false
         };
 
-        // eslint-disable-next-line no-unused-vars
-        const item2 = {
-            orgCode: "6",
-            orgTranslationShort: "E",
-            orgTranslation: "EEE",
-            inactive: false
-        };
-
         axiosMock.onPost("/api/UCSBOrganization/post").reply(202, item);
 
         render(
@@ -105,6 +97,14 @@ describe("UCSBOrganizationCreatePage tests", () => {
         //console.log(axiosMock.history.post[0]);
         //console.log(JSON.parse(axiosMock.history.post[0].data).params);
         //expect(axiosMock.history.post[0].data.params).toEqual(item2);
+
+        expect(axiosMock.history.post[0].params).toEqual(
+            {
+                "orgCode": "5",
+                "orgTranslationShort": "D",
+                "orgTranslation": "DDD",
+                "inactive": false
+            });
 
         // assert - check that the toast was called with the expected message
         expect(mockToast).toBeCalledWith("New UCSB org Created - id: 5");
