@@ -23,4 +23,4 @@ repo_name: "TBD"
 repo: ucsb-cs156-m23/team03-m23-10am-4
 owner: ucsb-cs156-m23
 repo_name: team03-m23-10am-4
-pull_requests: [{"author":{"id":"MDQ6VXNlcjQxMTY1MjA0","is_bot":false,"login":"dscpsyl","name":"SimYouLater"},"headRefName":"Dav-RRIndex","number":85,"title":"Recommendation Request Index Page Creation","url":"https://github.com/ucsb-cs156-m23/team03-m23-10am-4/pull/85"}]
+pull_requests: [{"author":{"id":"MDQ6VXNlcjU2MDYwNjY0","is_bot":false,"login":"publicqi","name":""},"headRefName":"Qi-TableComponent","number":86,"title":"qs - add MenuItemReview table component and tests","url":"https://github.com/ucsb-cs156-m23/team03-m23-10am-4/pull/86"},{"author":{"id":"MDQ6VXNlcjQxMTY1MjA0","is_bot":false,"login":"dscpsyl","name":"SimYouLater"},"headRefName":"Dav-RRIndex","number":85,"title":"Recommendation Request Index Page Creation","url":"https://github.com/ucsb-cs156-m23/team03-m23-10am-4/pull/85"}]
