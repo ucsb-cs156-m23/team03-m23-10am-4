@@ -80,9 +80,12 @@ function UCSBOrganizationForm({ initialContents, submitAction, buttonLabel = "Cr
                     id="inactive"
                     type="radio"
                     isInvalid={Boolean(errors.inactive)}
-                    {...register("inactive", {
+                    /*
+                     {...register("inactive", {
                         required: "inactive is required."
                     })}
+                    */
+                    {...register("inactive")}
                 />
                 <Form.Control.Feedback type="invalid">
                     {errors.inactive?.message}
