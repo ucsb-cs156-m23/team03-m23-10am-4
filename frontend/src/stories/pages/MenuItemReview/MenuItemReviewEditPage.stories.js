@@ -11,7 +11,7 @@ export default {
     component: MenuItemReviewEditPage
 };
 
-const Template = (args) => <MenuItemReviewEditPage storybook={true} />;
+const Template = () => <MenuItemReviewEditPage storybook={true} />;
 
 export const Default = Template.bind({});
 Default.parameters = {
@@ -26,7 +26,7 @@ Default.parameters = {
             return res(ctx.json(menuItemReviewFixtures.threeMenuItemReviews));
         }),
         rest.put("/api/menuitemreview", async (req, res, ctx) => {
-            var reqBody = await req.text();
+            let reqBody = await req.text();
             window.alert("PUT: " + req.url + " and body: " + reqBody);
             return res(ctx.status(200), ctx.json({}));
         }),
