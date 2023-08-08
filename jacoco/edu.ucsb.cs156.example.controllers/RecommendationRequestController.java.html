@@ -62,7 +62,7 @@ import java.time.LocalDateTime;
     @PreAuthorize(&quot;hasRole('ROLE_ADMIN')&quot;)
     @PostMapping(&quot;/post&quot;)
     public RecommendationRequest createRecommendationRequest(
-            @Parameter(name= &quot;requestorEmail&quot;) @RequestParam String requestorEmail,
+            @Parameter(name= &quot;requesterEmail&quot;) @RequestParam String requesterEmail,
             @Parameter(name= &quot;professorEmail&quot;) @RequestParam String professorEmail,
             @Parameter(name= &quot;explanation&quot;) @RequestParam String explanation,
             @Parameter(name= &quot;dateRequested&quot;, description = &quot;in iso format, e.g. YYYY-mm-ddTHH:MM:SS; see https://en.wikipedia.org/wiki/ISO_8601)&quot;) @RequestParam(&quot;dateRequested&quot;) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime dateRequested,
@@ -72,7 +72,7 @@ import java.time.LocalDateTime;
         
         // Create a new RecommendationRequest object
 <span class="fc" id="L74">        RecommendationRequest request = RecommendationRequest.builder()</span>
-<span class="fc" id="L75">                                        .requesterEmail(requestorEmail)</span>
+<span class="fc" id="L75">                                        .requesterEmail(requesterEmail)</span>
 <span class="fc" id="L76">                                        .professorEmail(professorEmail)</span>
 <span class="fc" id="L77">                                        .explanation(explanation)</span>
 <span class="fc" id="L78">                                        .dateRequested(dateRequested)</span>
