@@ -23,4 +23,4 @@ repo_name: "TBD"
 repo: ucsb-cs156-m23/team03-m23-10am-4
 owner: ucsb-cs156-m23
 repo_name: team03-m23-10am-4
-pull_requests: [{"author":{"id":"MDQ6VXNlcjQxMTY1MjA0","is_bot":false,"login":"dscpsyl","name":"SimYouLater"},"headRefName":"Dav-typo","number":91,"title":"Typos causing 400 bad request fix","url":"https://github.com/ucsb-cs156-m23/team03-m23-10am-4/pull/91"}]
+pull_requests: [{"author":{"id":"MDQ6VXNlcjY4NDMwOTQ5","is_bot":false,"login":"yuanchenmeng","name":"Yuanchen Meng"},"headRefName":"Yuanchen-UCSBOrg-Pages","number":92,"title":"Implemented three pages for UCSBOrganization","url":"https://github.com/ucsb-cs156-m23/team03-m23-10am-4/pull/92"},{"author":{"id":"MDQ6VXNlcjQxMTY1MjA0","is_bot":false,"login":"dscpsyl","name":"SimYouLater"},"headRefName":"Dav-typo","number":91,"title":"Typos causing 400 bad request fix","url":"https://github.com/ucsb-cs156-m23/team03-m23-10am-4/pull/91"}]
