@@ -189,7 +189,7 @@ public class RecomendationRequestControllerTests extends ControllerTestCase{
 
         when(recommendationRequestRepository.save(eq(req))).thenReturn(req);
 
-        MvcResult response = mockMvc.perform(post("/api/recommendationrequest/post?requestorEmail=testr@ucsb.edu&professorEmail=testp@ucsb.edu&explanation=testexplanation&dateRequested=2022-01-03T00:00:00&dateNeeded=2022-02-03T00:00:00&done=false").with(csrf()))
+        MvcResult response = mockMvc.perform(post("/api/recommendationrequest/post?requesterEmail=testr@ucsb.edu&professorEmail=testp@ucsb.edu&explanation=testexplanation&dateRequested=2022-01-03T00:00:00&dateNeeded=2022-02-03T00:00:00&done=false").with(csrf()))
                         .andExpect(status().isOk())
                         .andReturn();
 
