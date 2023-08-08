@@ -22,8 +22,8 @@ Default.parameters = {
         rest.get("/api/systemInfo", (_req, res, ctx) => {
             return res(ctx.json(systemInfoFixtures.showingNeither));
         }),
-        rest.get("/api/menuitemreview/all", (_req, res, ctx) => {
-            return res(ctx.json(menuItemReviewFixtures.threeMenuItemReviews));
+        rest.get("/api/menuitemreview", (_req, res, ctx) => {
+            return res(ctx.json(menuItemReviewFixtures.threeMenuItemReviews[0]));
         }),
         rest.put("/api/menuitemreview", async (req, res, ctx) => {
             let reqBody = await req.text();
