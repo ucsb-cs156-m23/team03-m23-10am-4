@@ -28,7 +28,7 @@ export default function RecommendationRequestEditPage({storybook=false}) {
             id: request.id,
         },
         data: {
-            requestorEmail: request.requestorEmail,
+            requesterEmail: request.requesterEmail,
             professorEmail: request.professorEmail,
             explanation: request.explanation,
             dateRequested: request.dateRequested,
@@ -38,7 +38,7 @@ export default function RecommendationRequestEditPage({storybook=false}) {
     });
 
     const onSuccess = (request) => {
-        toast(`Restaurant Updated - id: ${request.id} email: ${request.requestorEmail}`);
+        toast(`Recommendation Request Updated - id: ${request.id}`);
     }
 
     const mutation = useBackendMutation(

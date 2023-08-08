@@ -1,7 +1,7 @@
 import { fireEvent, render, waitFor, screen } from "@testing-library/react";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { MemoryRouter } from "react-router-dom";
-import RestaurantEditPage from "main/pages/Restaurants/RestaurantEditPage";
+import RecomendationRequestEditPage from "main/pages/RecomendationRequest/RecomendationRequestEditPage";
 
 import { apiCurrentUserFixtures } from "fixtures/currentUserFixtures";
 import { systemInfoFixtures } from "fixtures/systemInfoFixtures";
@@ -32,7 +32,7 @@ jest.mock('react-router-dom', () => {
     };
 });
 
-describe("RestaurantEditPage tests", () => {
+describe("RecomendationRequestEditPage tests", () => {
 
     describe("when the backend doesn't return data", () => {
 
@@ -43,7 +43,7 @@ describe("RestaurantEditPage tests", () => {
             axiosMock.resetHistory();
             axiosMock.onGet("/api/currentUser").reply(200, apiCurrentUserFixtures.userOnly);
             axiosMock.onGet("/api/systemInfo").reply(200, systemInfoFixtures.showingNeither);
-            axiosMock.onGet("/api/restaurants", { params: { id: 17 } }).timeout();
+            axiosMock.onGet("/api/recommendationrequest", { params: { id: 17 } }).timeout();
         });
 
         const queryClient = new QueryClient();
@@ -54,12 +54,12 @@ describe("RestaurantEditPage tests", () => {
             render(
                 <QueryClientProvider client={queryClient}>
                     <MemoryRouter>
-                        <RestaurantEditPage />
+                        <RecomendationRequestEditPage />
                     </MemoryRouter>
                 </QueryClientProvider>
             );
-            await screen.findByText("Edit Restaurant");
-            expect(screen.queryByTestId("Restaurant-name")).not.toBeInTheDocument();
+            await screen.findByText("Edit Recommendation Request");
+            expect(screen.queryByTestId("requestorEmail")).not.toBeInTheDocument();
             restoreConsole();
         });
     });
@@ -73,15 +73,23 @@ describe("RestaurantEditPage tests", () => {
             axiosMock.resetHistory();
             axiosMock.onGet("/api/currentUser").reply(200, apiCurrentUserFixtures.userOnly);
             axiosMock.onGet("/api/systemInfo").reply(200, systemInfoFixtures.showingNeither);
-            axiosMock.onGet("/api/restaurants", { params: { id: 17 } }).reply(200, {
+            axiosMock.onGet("/api/recommendationrequest", { params: { id: 17 } }).reply(200, {
                 id: 17,
-                name: "Freebirds",
-                description: "Burritos"
+                requesterEmail: "testing1@ucsb.edu",
+                professorEmail: "request1@ucsb.edu",
+                explanation: "I need a recommendation for a job",
+                dateRequested: "2021-05-01T00:00:00.000",
+                dateNeeded: "2021-05-15T00:00:00.000",
+                done: false
             });
-            axiosMock.onPut('/api/restaurants').reply(200, {
-                id: "17",
-                name: "Freebirds World Burrito",
-                description: "Really big Burritos"
+            axiosMock.onPut('/api/recommendationrequest').reply(200, {
+                id: 17,
+                requesterEmail: "testing17@ucsb.edu",
+                professorEmail: "request17@ucsb.edu",
+                explanation: "I don't need anything anymore",
+                dateRequested: "2021-05-01T00:00:00.000",
+                dateNeeded: "2021-05-15T00:00:00.000",
+                done: false
             });
         });
 
@@ -92,77 +100,85 @@ describe("RestaurantEditPage tests", () => {
             render(
                 <QueryClientProvider client={queryClient}>
                     <MemoryRouter>
-                        <RestaurantEditPage />
+                        <RecomendationRequestEditPage />
                     </MemoryRouter>
                 </QueryClientProvider>
             );
 
-            await screen.findByTestId("RestaurantForm-id");
+            await screen.findByTestId("RecommendationRequestForm-id");
 
-            const idField = screen.getByTestId("RestaurantForm-id");
-            const nameField = screen.getByTestId("RestaurantForm-name");
-            const descriptionField = screen.getByTestId("RestaurantForm-description");
-            const submitButton = screen.getByTestId("RestaurantForm-submit");
+            const idField = screen.getByTestId("RecommendationRequestForm-id");
+            const emailField = screen.getByTestId("RecommendationRequestForm-requesterEmail");
+            const profField = screen.getByTestId("RecommendationRequestForm-professorEmail");
+            const descriptionField = screen.getByTestId("RecommendationRequestForm-explanation");
+            const submitButton = screen.getByTestId("RecommendationRequestForm-submit");
 
             expect(idField).toBeInTheDocument();
             expect(idField).toHaveValue("17");
-            expect( nameField).toBeInTheDocument();
-            expect(nameField).toHaveValue("Freebirds");
+            expect(emailField).toBeInTheDocument();
+            expect(emailField).toHaveValue("testing1@ucsb.edu");
+            expect(profField).toBeInTheDocument();
+            expect(profField).toHaveValue("request1@ucsb.edu");
             expect(descriptionField).toBeInTheDocument();
-            expect(descriptionField).toHaveValue("Burritos");
+            expect(descriptionField).toHaveValue("I need a recommendation for a job");
 
             expect(submitButton).toHaveTextContent("Update");
 
-            fireEvent.change(nameField, { target: { value: 'Freebirds World Burrito' } });
-            fireEvent.change(descriptionField, { target: { value: 'Totally Giant Burritos' } });
+            fireEvent.change(emailField, { target: { value: 'testing17@ucsb.edu' } });
+            fireEvent.change(profField, { target: { value: 'request17@ucsb.edu' } });
+            fireEvent.change(descriptionField, { target: { value: 'I don\'t need anything anymore' } });
             fireEvent.click(submitButton);
 
             await waitFor(() => expect(mockToast).toBeCalled());
-            expect(mockToast).toBeCalledWith("Restaurant Updated - id: 17 name: Freebirds World Burrito");
+            expect(mockToast).toBeCalledWith("Recommendation Request Updated - id: 17");
             
-            expect(mockNavigate).toBeCalledWith({ "to": "/restaurants" });
+            expect(mockNavigate).toBeCalledWith({ "to": "/recommendationrequest" });
 
             expect(axiosMock.history.put.length).toBe(1); // times called
             expect(axiosMock.history.put[0].params).toEqual({ id: 17 });
             expect(axiosMock.history.put[0].data).toBe(JSON.stringify({
-                name: 'Freebirds World Burrito',
-                description: 'Totally Giant Burritos'
+                requesterEmail: "testing17@ucsb.edu",
+                professorEmail: "request17@ucsb.edu",
+                explanation: "I don't need anything anymore",
+                dateRequested: "2021-05-01T00:00:00.000",
+                dateNeeded: "2021-05-15T00:00:00.000",
+                done: false
             })); // posted object
 
 
         });
 
-        test("Changes when you click Update", async () => {
+        // test("Changes when you click Update", async () => {
 
-            render(
-                <QueryClientProvider client={queryClient}>
-                    <MemoryRouter>
-                        <RestaurantEditPage />
-                    </MemoryRouter>
-                </QueryClientProvider>
-            );
+        //     render(
+        //         <QueryClientProvider client={queryClient}>
+        //             <MemoryRouter>
+        //                 <RecomendationRequestEditPage />
+        //             </MemoryRouter>
+        //         </QueryClientProvider>
+        //     );
 
-            await screen.findByTestId("RestaurantForm-id");
+        //     await screen.findByTestId("RecommendationRequestForm-id");
 
-            const idField = screen.getByTestId("RestaurantForm-id");
-            const nameField = screen.getByTestId("RestaurantForm-name");
-            const descriptionField = screen.getByTestId("RestaurantForm-description");
-            const submitButton = screen.getByTestId("RestaurantForm-submit");
+        //     const idField = screen.getByTestId("RecommendationRequestForm-id");
+        //     const nameField = screen.getByTestId("RecommendationRequestForm-name");
+        //     const descriptionField = screen.getByTestId("RecommendationRequestForm-description");
+        //     const submitButton = screen.getByTestId("RecommendationRequestForm-submit");
 
-            expect(idField).toHaveValue("17");
-            expect(nameField).toHaveValue("Freebirds");
-            expect(descriptionField).toHaveValue("Burritos");
-            expect(submitButton).toBeInTheDocument();
+        //     expect(idField).toHaveValue("17");
+        //     expect(nameField).toHaveValue("Freebirds");
+        //     expect(descriptionField).toHaveValue("Burritos");
+        //     expect(submitButton).toBeInTheDocument();
 
-            fireEvent.change(nameField, { target: { value: 'Freebirds World Burrito' } })
-            fireEvent.change(descriptionField, { target: { value: 'Big Burritos' } })
+        //     fireEvent.change(nameField, { target: { value: 'Freebirds World Burrito' } })
+        //     fireEvent.change(descriptionField, { target: { value: 'Big Burritos' } })
 
-            fireEvent.click(submitButton);
+        //     fireEvent.click(submitButton);
 
-            await waitFor(() => expect(mockToast).toBeCalled());
-            expect(mockToast).toBeCalledWith("Restaurant Updated - id: 17 name: Freebirds World Burrito");
-            expect(mockNavigate).toBeCalledWith({ "to": "/restaurants" });
-        });
+        //     await waitFor(() => expect(mockToast).toBeCalled());
+        //     expect(mockToast).toBeCalledWith("Restaurant Updated - id: 17 name: Freebirds World Burrito");
+        //     expect(mockNavigate).toBeCalledWith({ "to": "/recommendationrequest" });
+        // });
 
        
     });
