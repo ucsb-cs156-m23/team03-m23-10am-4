@@ -188,5 +188,3 @@ describe("AppNavbar tests", () => {
     });
 
 });
-
-
