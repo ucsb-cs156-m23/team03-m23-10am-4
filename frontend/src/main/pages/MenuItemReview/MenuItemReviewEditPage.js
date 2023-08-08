@@ -26,10 +26,9 @@ export default function MenuItemReviewEditPage({storybook=false}) {
       url: `/api/menuitemreview`,
       method: "PUT",
       params: {
-        id: id,
+        id: menuitemreview.id,
       },
       data: {
-        // id: menuitemreview.id,
         itemId: menuitemreview.itemId,
         reviewerEmail: menuitemreview.reviewerEmail,
         stars: menuitemreview.stars,
@@ -64,7 +63,7 @@ export default function MenuItemReviewEditPage({storybook=false}) {
           <div className="pt-2">
             <h1>Edit MenuItemReview</h1>
             {
-              menuitemreview && <MenuItemReviewForm submitAction={onSubmit} buttonLabel={"Update"} initialContents={menuitemreview} />
+              menuitemreview && <MenuItemReviewForm submitAction={onSubmit} buttonLabel="Update" initialContents={menuitemreview} />
             }
           </div>
         </BasicLayout>
