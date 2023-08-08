@@ -10,7 +10,6 @@ export default function RecomendationRequestCreatePage({storybook=false}) {
     url: "/api/recommendationrequest/post",
     method: "POST",
     params: {
-      id: request.id,
       requesterEmail: request.requesterEmail,
       professorEmail: request.professorEmail,
       explanation: request.explanation,
