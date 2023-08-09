@@ -119,7 +119,7 @@ function MenuItemReviewForm({ initialContents, submitAction, buttonLabel = "Crea
                 <Form.Control
                     data-testid={testIdPrefix + "-date-reviewed"}
                     id="date-reviewed"
-                    type="text"
+                    type="datetime-local"
                     isInvalid={Boolean(errors.dateReviewed)}
                     {...register("dateReviewed", {
                         required: "Date Reviewed is required.",
