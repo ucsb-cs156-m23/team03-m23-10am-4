@@ -85,7 +85,7 @@ describe("MenuItemReviewEditPage tests", () => {
                 "itemId": 1,
                 "reviewerEmail": "test@ucsb.edu",
                 "stars": 5,
-                "dateReviewed": "2023-08-05T03:58:55.563Z",
+                "dateReviewed": "2023-08-05T03:58",
                 "comments": "This is a test review"
             });
             axiosMock.onPut("/api/menuitemreview").reply(200, {
@@ -93,7 +93,7 @@ describe("MenuItemReviewEditPage tests", () => {
                 "itemId": 2,
                 "reviewerEmail": "test2@ucsb.edu",
                 "stars": 4,
-                "dateReviewed": "2023-08-05T03:58:55.563Z",
+                "dateReviewed": "2023-08-04T03:58",
                 "comments": "This is a test review 2"
             });
         });
@@ -130,13 +130,13 @@ describe("MenuItemReviewEditPage tests", () => {
             expect(itemIdField).toHaveValue("1");
             expect(reviewerEmailField).toHaveValue("test@ucsb.edu");
             expect(starsField).toHaveValue("5");
-            expect(dateReviewedField).toHaveValue("2023-08-05T03:58:55.563Z");
+            expect(dateReviewedField).toHaveValue("2023-08-05T03:58");
             expect(commentsField).toHaveValue("This is a test review");
 
             const newItemId = "2";
             const newReviewerEmail = "test2@ucsb.edu";
             const newStars = "4";
-            const newDateReviewed = "2023-08-05T03:58:55.563Z";
+            const newDateReviewed = "2023-08-04T03:58";
             const newComments = "This is a test review 2";
 
             // change all the fields
