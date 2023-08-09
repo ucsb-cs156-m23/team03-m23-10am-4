@@ -138,7 +138,7 @@ describe("MenuItemReviewTable tests", () => {
 
         fireEvent.click(editButton);
 
-        await waitFor(() => expect(mockedNavigate).toHaveBeenCalledWith(`/menuitemreviews/edit/${menuItemReviewFixtures.threeMenuItemReviews[0].id}`));
+        await waitFor(() => expect(mockedNavigate).toHaveBeenCalledWith(`/menuitemreview/edit/${menuItemReviewFixtures.threeMenuItemReviews[0].id}`));
     });
 
     test("Delete button calls delete callback", async () => {
