@@ -53,7 +53,7 @@ export default function MenuItemReviewCreatePage(storybook=false) {
     <BasicLayout>
       <div className="pt-2">
         <h1>Create New MenuItemReview</h1>
-        <MenuItemReviewForm onSubmit={onSubmit} />
+        <MenuItemReviewForm submitAction={onSubmit} />
       </div>
     </BasicLayout>
   );
