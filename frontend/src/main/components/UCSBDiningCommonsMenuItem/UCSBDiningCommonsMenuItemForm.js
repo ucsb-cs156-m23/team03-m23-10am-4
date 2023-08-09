@@ -90,7 +90,7 @@ function UCSBDiningCommonsMenuItemForm({ initialContents, submitAction, buttonLa
                             message: "Max length 100 characters"
                         }
                     })}
-                />
+                /> 
                 <Form.Control.Feedback type="invalid">
                     {errors.station?.message}
                 </Form.Control.Feedback>
